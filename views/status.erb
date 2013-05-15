@@ -1,0 +1,17 @@
+<% if success %>
+  <div class="success">
+      <%= success %>
+  </div>
+<% elsif failure%>
+  <div class="error">
+      <%= failure %>
+  </div>
+<% else %>
+  <div class="unknown">
+      Server does not know what to do with the giver resut!
+  </div>
+<% end %>
+
+<section id="redirecting">
+    Redirecting...
+</section>
