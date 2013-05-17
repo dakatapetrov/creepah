@@ -20,3 +20,16 @@
 		<input type="submit" value="update" />
 	</form>
 </section>
+
+<%if is_running %>
+<section id="players">
+<% if player_names %>
+    <h2>There are currently <%= players_online %> of <%= player_capacity %> players online:</h2>
+    <% player_names.each_with_index do |name, index| %>
+        <%= index + 1 %>. <%= name %><br />
+    <% end %>
+<% else %>
+    <h2>There are currently <%= players_online %> of <%= player_capacity %> players online.</h2>
+<% end %>
+</section>
+<% end %>
