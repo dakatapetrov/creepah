@@ -1,4 +1,4 @@
-<% if is_running %>
+<% if running %>
   <div class="success">
 	Server is currently running.
   </div>
@@ -21,11 +21,11 @@
 	</form>
 </section>
 
-<%if is_running %>
-<section id="players">
-<% if player_names %>
+<%if running %>
+<section id="players_info">
+<% if players_names %>
     <h2>There are currently <%= players_online %> of <%= player_capacity %> players online:</h2>
-    <% player_names.each_with_index do |name, index| %>
+    <% players_names.each_with_index do |name, index| %>
         <%= index + 1 %>. <%= name %><br />
     <% end %>
 <% else %>
