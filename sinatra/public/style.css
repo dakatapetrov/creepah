@@ -8,7 +8,9 @@ body {
 a, a:active, a:visited { color: #2d6196; }
 a:hover { text-decoration: none; }
 small	{ font-size: 75%; }
-p 		{ margin: 0 0 5px; }
+p 	{ margin: 0 0 5px; }
+
+form.inline_form { display: inline-block; }
 
 label {
 	display: block;
