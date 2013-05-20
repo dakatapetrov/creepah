@@ -54,6 +54,18 @@ class CreepahMain < Sinatra::Base
     sleep 3
     redirect '/'
   end
+
+  post '/configure' do
+    system( "echo -en \"#{params[:content]}\" > server.properties" )
+    redirect '/'
+  end
+
+  get '/configure' do
+    file         = File.open( "server.properties", "rb" )
+    file_content = file.read
+    file.close
+    erb :edit, locals: { file_content: file_content }
+  end
 end
 
 Dir[File.join Creepah::Structure::HELPERS, '*.rb'].each do |file|
