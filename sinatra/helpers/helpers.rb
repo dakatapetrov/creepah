@@ -1,15 +1,19 @@
 class CreepahMain < Sinatra::Base
+  attr_reader :server
+
   def start_server
-    @@server = open("|cd #{$path}; #{$execute}", 'w')
+    @server = open "|cd #{Creepah::Config::PATH};
+                     #{Creepah::Config::EXECUTE}",
+                    'w'
   end
 
   def running?
-      @@server and !@@server.closed?
+      @server && !@server.closed?
   end
 
   def stop_server
-    @@server.write "stop\n"
-    @@server.close
+    @server.write "stop\n"
+    @server.close
   end
 
   def players_info(contents)
@@ -17,16 +21,17 @@ class CreepahMain < Sinatra::Base
     players_online  = players.first.first.to_i
     player_capacity = players.last.first.to_i
     if players_online > 0
-      players_names   = contents.scan(/\[INFO\]\s(\w+(\,\s\w+)*)$/).
-          last.first.split", "
+      players_names   = contents.scan(/\[INFO\]\s(\w+(\,\s\w+)*)$/)
+                          .last.first.split", "
     else
-        player_names = nil
+        players_names = nil
     end
     [players_online, player_capacity, players_names]
   end
 
   def update_server
-    %x[rm #{$path}minecraft_server.jar]
-    %x[cd #{$path}; wget https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar]
+    `rm #{Creepah::Config::PATH}minecraft_server.jar`
+    `cd #{Creepah::Config::PATH}; wget
+     https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar`
   end
 end

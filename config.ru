@@ -11,7 +11,6 @@ module Creepah
   end
 end
 
-
 class CreepahMain < Sinatra::Base
   disable :run
   set :public_folder, Creepah::Structure::PUBLIC
@@ -22,9 +21,11 @@ class CreepahMain < Sinatra::Base
   get '/' do
     if running?
       @@server.write "list\n"
-      file                                           = File.open "#{$path}server.log", 'r'
-      file_content                                   = file.read
-      players_online, player_capacity, players_names = players_info file_content
+      file             = File.open "#{Creepah::Config::PATH}server.log", 'r'
+      file_content     = file.read
+      players_online,
+      player_capacity,
+      players_names    = players_info file_content
       file.close
 
       erb :home, locals: { running:         true,
@@ -56,14 +57,14 @@ class CreepahMain < Sinatra::Base
   end
 
   post '/configure' do
-    file = File.open "#{$path}server.properties", 'w'
+    file = File.open "#{Creepah::Config::PATH}server.properties", 'w'
     file.write params[:content]
     file.close
     redirect '/'
   end
 
   get '/configure' do
-    file         = File.open "#{$path}server.properties", 'r'
+    file         = File.open "#{Creepah::Config::PATH}server.properties", 'r'
     file_content = file.read
     file.close
     erb :configure, locals: { file_content: file_content }
