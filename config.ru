@@ -64,7 +64,7 @@ class CreepahMain < Sinatra::Base
     file         = File.open( "server.properties", "rb" )
     file_content = file.read
     file.close
-    erb :edit, locals: { file_content: file_content }
+    erb :configure, locals: { file_content: file_content }
   end
 end
 
