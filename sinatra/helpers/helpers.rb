@@ -1,6 +1,6 @@
 class CreepahMain < Sinatra::Base
   def start_server
-    @@server = open("|#{$execute}", 'w')
+    @@server = open("|cd #{$path}; #{$execute}", 'w')
   end
 
   def running?
@@ -26,7 +26,7 @@ class CreepahMain < Sinatra::Base
   end
 
   def update_server
-    %x[rm minecraft_server.jar]
-    %x[wget https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar]
+    %x[rm #{$path}minecraft_server.jar]
+    %x[cd #{$path}; wget https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar]
   end
 end

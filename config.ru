@@ -22,7 +22,7 @@ class CreepahMain < Sinatra::Base
   get '/' do
     if running?
       @@server.write "list\n"
-      file                                           = File.open "server.log", 'r'
+      file                                           = File.open "#{$path}server.log", 'r'
       file_content                                   = file.read
       players_online, player_capacity, players_names = players_info file_content
       file.close
@@ -56,14 +56,14 @@ class CreepahMain < Sinatra::Base
   end
 
   post '/configure' do
-    file = File.open "server.properties", 'w'
+    file = File.open "#{$path}server.properties", 'w'
     file.write params[:content]
     file.close
     redirect '/'
   end
 
   get '/configure' do
-    file         = File.open "server.properties", 'r'
+    file         = File.open "#{$path}server.properties", 'r'
     file_content = file.read
     file.close
     erb :configure, locals: { file_content: file_content }
