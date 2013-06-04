@@ -21,7 +21,9 @@ label {
 label:first-child {	padding-top: 0; }
 
 input { padding: 2px 5px; }
-input, select { width: 150px; }
+input, select { width: 270px; }
+
+input[type="checkbox"] { width: 20px }
 
 input[type="submit"], a.button {
 	width: auto;

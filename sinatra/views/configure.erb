@@ -1,8 +1,121 @@
-<section id="edit">
+<section id="configure">
+    <h1>Configure</h1>
     <form action="/configure" method="post">
-        <textarea name="content" cols="70" rows="30"><%= file_content %></textarea>
+        <div class="column">
+            <label>
+                Generator settings:<br />
+                <input type="text" name="generator_settings" value="<%= settings_values[:generator_settings] %>" />
+            </label>
+            <label>
+                Level name:<br />
+                <input type="text" name="level_name" value="<%= settings_values[:level_name] %>" />
+            </label>
+            <label>
+                Server port:<br />
+                <input type="text" name="server_port" value="<%= settings_values[:server_port] %>" />
+            </label>
+            <label>
+                Level type:<br />
+                <input type="text" name="level_type" value="<%= settings_values[:level_type] %>" />
+            </label>
+            <label>
+                Level seed:<br />
+                <input type="text" name="level_seed" value="<%= settings_values[:level_seed] %>" />
+            </label>
+            <label>
+                Server IP:<br />
+                <input type="text" name="server_ip" value="<%= settings_values[:server_ip] %>" />
+            </label>
+            <label>
+                Max build height:<br />
+                <input type="text" name="max_build_height" value="<%= settings_values[:max_build_height] %>" />
+            </label>
+            <label>
+                <input type="checkbox" name="spawn_npcs" <% if settings_values[:spawn_npcs].eql? 'true' %>checked="checked"<% end %> />
+                Spawn NPCs<br />
+            </label>
+            <label>
+                <input type="checkbox" name="white_list" <% if settings_values[:white_list].eql? 'true' %>checked="checked"<% end %> />
+                White list<br />
+            </label>
+            <label>
+                <input type="checkbox" name="spawn_animals" <% if settings_values[:spawn_animals].eql? 'true' %>checked="checked"<% end %> />
+                Spawn animals<br />
+            </label>
+            <label>
+                <input type="checkbox" name="snooper_enabled" <% if settings_values[:snooper_enabled].eql? 'true' %>checked="checked"<% end %> />
+                Snooper enabled<br />
+            </label>
+            <label>
+                <input type="checkbox" name="online_mode" <% if settings_values[:online_mode].eql? 'true' %>checked="checked"<% end %> />
+                Online mode<br />
+            </label>
+            <label>
+                <input type="checkbox" name="pvp" <% if settings_values[:pvp].eql? 'true' %>checked="checked"<% end %> />
+                PVP<br />
+            </label>
+        </div>
+        <div class="column">
+            <label>
+                Texture pack:<br />
+                <input type="text" name="texture_pack" value="<%= settings_values[:texture_pack] %>" />
+            </label>
+            <label>
+                Difficulty:<br />
+                <input type="text" name="difficulty" value="<%= settings_values[:difficulty] %>" />
+            </label>
+            <label>
+                Gamemode:<br />
+                <input type="text" name="gamemode" value="<%= settings_values[:gamemode] %>" />
+            </label>
+            <label>
+                Max players:<br />
+                <input type="text" name="max_players" value="<%= settings_values[:max_players] %>" />
+            </label>
+            <label>
+                View distance:<br />
+                <input type="text" name="view_distance" value="<%= settings_values[:view_distance] %>" />
+            </label>
+            <label>
+                Spawn protection:<br />
+                <input type="text" name="spawn_protection" value="<%= settings_values[:spawn_protection] %>" />
+            </label>
+            <label>
+                MOTD:<br />
+                <input type="text" name="motd" value="<%= settings_values[:motd] %>" />
+            </label>
+            <label>
+                <input type="checkbox" name="allow_nether" <% if settings_values[:allow_nether].eql? 'true' %>checked="checked"<% end %> />
+                Allow nether<br />
+            </label>
+            <label>
+                <input type="checkbox" name="enable_query" <% if settings_values[:enable_query].eql? 'true' %>checked="checked"<% end %> />
+                Enable query<br />
+            </label>
+            <label>
+                <input type="checkbox" name="allow_flight" <% if settings_values[:allow_flight].eql? 'true' %>checked="checked"<% end %> />
+                Allow flight<br />
+            </label>
+            <label>
+                <input type="checkbox" name="enable_rcon" <% if settings_values[:enable_rcon].eql? 'true' %>checked="checked"<% end %> />
+                Enable RCON<br />
+            </label>
+            <label>
+                <input type="checkbox" name="force_gamemode" <% if settings_values[:force_gamemode].eql? 'true' %>checked="checked"<% end %> />
+                Force gamemode<br />
+            </label>
+            <label>
+                <input type="checkbox" name="spawn_monsters" <% if settings_values[:spawn_monsters].eql? 'true' %>checked="checked"<% end %> />
+                Spawn monsters<br />
+            </label>
+            <label>
+                <input type="checkbox" name="generate_structures" <% if settings_values[:generate_structures].eql? 'true' %>checked="checked"<% end %> />
+                Generate structures<br />
+            </label>
+        </div>
         <div class="clear">
             <input type="submit" value="configure" />
+            <a href="/edit" class="button">edit server.properties</a>
         </div>
     </form>
 </section>
